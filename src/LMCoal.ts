@@ -20,7 +20,7 @@ export default class LMCoal {
                 console.error(err)
                 process.exit(1)
             }
-            console.log(`Ignited at ${address}!`)
+            console.log(`Ignited at ${address}`)
         })
     }
 

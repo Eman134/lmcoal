@@ -16,9 +16,8 @@
   "dependencies": {
     "@prisma/adapter-pg": "^5.10.2",
     "@prisma/client": "^5.10.2",
-    "fastify": "^4.26.1",
-    "pg": "^8.11.3",
     "prisma": "^5.10.2",
-    "prisma-multischema": "^1.1.4"
+    "fastify": "^4.26.1",
+    "pg": "^8.11.3"
   }
 }
