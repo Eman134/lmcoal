@@ -1,33 +1,33 @@
 version: '3.8'
 
 services:
-  lmcoal:
-    container_name: lmcoal
-    hostname: lmcoal
-    image: 'lmcoal:latest'
-    build:
-      context: .
-    ports:
-      - '3000:3000'
-    restart: always
-    env_file: .env
-    depends_on:
-      - lmdiamond
+    lmcoal:
+        container_name: lmcoal
+        hostname: lmcoal
+        image: 'lmcoal:latest'
+        build:
+            context: .
+        ports:
+            - '3000:3000'
+        restart: always
+        env_file: .env
+        depends_on:
+            - lmdiamond
 
-  lmdiamond:
-    container_name: lmdiamond
-    hostname: lmdiamond
-    image: 'postgres:16'
-    ports:
-      - '5432:5432'
-    restart: always
-    env_file: .env
-    environment:
-      POSTGRES_DB: lmdiamond
-      POSTGRES_USER: lmdiamond
-      POSTGRES_PASSWORD: lmdiamond
-    volumes:
-      - lmdiamond_volume:/var/lib/postgres/data
+    lmdiamond:
+        container_name: lmdiamond
+        hostname: lmdiamond
+        image: 'postgres:16'
+        ports:
+            - '5432:5432'
+        restart: always
+        env_file: .env
+        environment:
+            POSTGRES_DB: lmdiamond
+            POSTGRES_USER: lmdiamond
+            POSTGRES_PASSWORD: lmdiamond
+        volumes:
+            - lmdiamond_volume:/var/lib/postgres/data
 
 volumes:
-  lmdiamond_volume: {}
+    lmdiamond_volume: {}
