@@ -1,4 +1,6 @@
 import fastify from 'fastify'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 export default class LMCoal {
   constructor() {
@@ -19,6 +21,15 @@ export default class LMCoal {
         console.error(err)
         process.exit(1)
       }
+      prisma
+        .$connect()
+        .then(() => {
+          console.log('Connected to database')
+        })
+        .catch(() => {
+          console.error('Failed to connect to database')
+          process.exit(1)
+        })
       console.log(`Ignited at ${address}`)
     })
   }
