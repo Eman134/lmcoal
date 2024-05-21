@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import { PrismaClient } from '@prisma/client'
+import userRoutes from './modules/user/user.route'
 const prisma = new PrismaClient()
 
 export default class LMCoal {
@@ -8,15 +9,21 @@ export default class LMCoal {
   }
 
   ignite() {
-    const app = fastify()
+    const server = fastify()
 
     const { ADDRESS = 'localhost', PORT = 3000 } = process.env
 
-    app.get('/', async (_request, _reply) => {
+    server.get('/', async (_request, _reply) => {
       return { hello: 'world' }
     })
 
-    app.listen({ host: ADDRESS, port: Number(PORT) }, (err, address) => {
+    server.get('/healthcheck', async (_request, _reply) => {
+      return { status: 'OK' }
+    })
+
+    server.register(userRoutes, { prefix: 'api/users' })
+
+    server.listen({ host: ADDRESS, port: Number(PORT) }, (err, address) => {
       if (err) {
         console.error(err)
         process.exit(1)
