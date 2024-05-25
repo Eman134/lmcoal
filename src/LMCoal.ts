@@ -1,7 +1,7 @@
 import fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
-import userRoutes from './modules/user/user.route'
-const prisma = new PrismaClient()
+import userRoutes from '@LMCoal/modules/user/user.route'
+import prisma from '@LMCoal/utils/prisma'
+import { userSchemas } from './modules/user/user.schema'
 
 export default class LMCoal {
   constructor() {
@@ -12,6 +12,10 @@ export default class LMCoal {
     const server = fastify()
 
     const { ADDRESS = 'localhost', PORT = 3000 } = process.env
+
+    for (const schema of userSchemas) {
+      server.addSchema(schema)
+    }
 
     server.get('/', async (_request, _reply) => {
       return { hello: 'world' }
@@ -32,12 +36,12 @@ export default class LMCoal {
         .$connect()
         .then(() => {
           console.log('Connected to database')
+          console.log(`Ignited at ${address}`)
         })
         .catch(() => {
           console.error('Failed to connect to database')
           process.exit(1)
         })
-      console.log(`Ignited at ${address}`)
     })
   }
 }
