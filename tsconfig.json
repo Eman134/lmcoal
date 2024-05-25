@@ -14,7 +14,8 @@
         "noImplicitAny": true,
         "skipLibCheck": true,
         "paths": {
-            "*": ["node_modules/*", "src/types/*"]
+            "*": ["node_modules/*", "src/types/*"],
+            "@LMCoal/*": ["src/*"]
         }
     },
     "include": ["src/**/*"]
