@@ -5,8 +5,8 @@
     "main": "index.ts",
     "scripts": {
         "test": "jest",
-        "start": "tsc && node dist/index.js",
-        "build": "tsc --build",
+        "start": "tsc && tsc-alias && node dist/index.js",
+        "build": "tsc --build && tsc-alias",
         "dev": "tsx watch src"
     },
     "license": "MIT",
